@@ -55,6 +55,5 @@ const obtenerFavoritos = () => {
     const misFavsIds = favs.filter(f => f.id_usuario === idUsuario).map(f => f.id_libro.toString());
     return libros.filter(l => misFavsIds.includes(l.id.toString()));
 };
-};
 
 inicializarBD();
