@@ -57,10 +57,10 @@
                     <div class="mb-3">
                         <label class="form-label text-info">Archivo PDF</label>
                         <input type="file" id="archivo_pdf" class="form-control" accept="application/pdf" required>
-                        <small class="text-secondary">Nota para GitHub: Asegúrate de subir manualmente el archivo PDF real a la carpeta 'libros_pdf'.</small>
+                        <small class="text-secondary">Nota Importante: Asegúrate de subir manualmente el archivo PDF a la carpeta "libros_pdf".</small>
                     </div>
 
-                    <button type="submit" id="btn-submit-form" class="btn btn-primary btn-add">Subir a la Nube (Firebase)</button>
+                    <button type="submit" id="btn-submit-form" class="btn btn-primary btn-add">Subir a la Pagina</button>
                     <a href="admin.html" id="link-cancelar" class="btn btn-secondary w-100 mt-2" style="display: none;">Cancelar Edición</a>
                 </form>
                 
@@ -162,7 +162,7 @@
                     document.getElementById('descripcion').value = libroAEditar.descripcion;
                     document.getElementById('precio').value = libroAEditar.precio;
                     
-                    btnSubmit.innerText = "Guardar Cambios en la Nube";
+                    btnSubmit.innerText = "Guardar Cambios";
                     btnSubmit.classList.replace('btn-primary', 'btn-warning');
                     btnSubmit.classList.add('text-dark');
                     linkCancelar.style.display = 'block';
@@ -173,7 +173,7 @@
         };
 
         window.eliminarLibro = async (id) => {
-            if (confirm('¿Estás seguro de borrar este libro GLOBALMENTE de la nube?')) {
+            if (confirm('¿Estás seguro de borrar este libro?')) {
                 await db.collection("libros").doc(id.toString()).delete();
                 
                 compras = compras.filter(c => parseInt(c.id_libro) !== id);
@@ -181,7 +181,7 @@
                 localStorage.setItem('compras', JSON.stringify(compras));
                 localStorage.setItem('favoritos', JSON.stringify(favoritos));
                 
-                alert('Libro eliminado de la nube correctamente.');
+                alert('Libro eliminado correctamente.');
                 window.location.href = 'admin.html';
             }
         };
@@ -215,7 +215,7 @@
 
             await db.collection("libros").doc(nuevoLibro.id.toString()).set(nuevoLibro);
             
-            alert('¡Libro guardado en la nube con éxito!');
+            alert('¡Libro guardado con éxito!');
             window.location.href = 'admin.html';
         });
 
