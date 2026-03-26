@@ -52,8 +52,9 @@ const obtenerFavoritos = () => {
     const idUsuario = localStorage.getItem('usuario_id');
     const favs = JSON.parse(localStorage.getItem('favoritos')) || [];
     const libros = JSON.parse(localStorage.getItem('libros')) || []; 
-    const misFavsIds = favs.filter(f => f.id_usuario === idUsuario).map(f => f.id_libro);
+    const misFavsIds = favs.filter(f => f.id_usuario === idUsuario).map(f => f.id_libro.toString());
     return libros.filter(l => misFavsIds.includes(l.id.toString()));
+};
 };
 
 inicializarBD();
